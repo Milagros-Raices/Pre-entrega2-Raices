@@ -10,19 +10,36 @@ function aplicarImpuestos(precio) {
     return Math.round(precio);
 }   
 
-function agregarAlCarrito() {
-    let precioFinal = 0;
-    while(true) {
-        let precio = parseInt(prompt("Agregar precio del producto al carrito (0 para dejar de comprar)"))
-        if(precio == 0) {
-            break;
-        }else {
-            precioFinal = precioFinal + aplicarImpuestos(precio);
+
+function buscarTorta(array, nombre) {
+    for(let i=0; i<array.length; i++) {
+        if(array[i].nombre.toLocaleLowerCase() == nombre) {
+            return array[i];
         }
     }
-    alert("El precio final es: $" + precioFinal)
+    return null;
 }
 
-agregarAlCarrito();
+
+function agregarAlCarrito(nombreTorta, cantidad) {
+    const inventario = [ {nombre: "Pastafrola", precio: 2000 } , {nombre: "CheeseCake", precio: 2500} , {nombre: "Selva Negra", precio: 3000 } , {nombre: "Lemon Pie", precio: 1800 }]
+
+    let precioFinal = 0;
+    let torta = buscarTorta(inventario, nombreTorta)
+
+    if(torta){
+        precioFinal = aplicarImpuestos(torta.precio * cantidad);
+    }else{
+        alert("Esta torta no se encuentra disponible!!");
+        return;
+    }
+    
+    alert("El precio final es: $" + precioFinal);
+}
+
+let nombreTorta = prompt("Escribi el nombre de la torta que queres.").toLocaleLowerCase();
+let cantidad = parseInt(prompt("Cantidad de tortas que queres."));
+
+agregarAlCarrito(nombreTorta, cantidad);
 
 
