@@ -1,6 +1,3 @@
-//Cree un programa en el cual mediante la funcion agregarAlCarito voy agregando precios de los productos que voy agregando al carro
-//a los cuales se les va deduciendo impuestos y finalmente se devuelve el precio final del carrito.
-
 function aplicarImpuestos(precio) {
     let IVA = precio * 0.21;      //IMPUESTO IVA
     if(precio > 20000) {
